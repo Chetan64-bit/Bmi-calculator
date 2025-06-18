@@ -1,23 +1,80 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [height, setHeight] = useState('');
+  const [weight, setWeight] = useState('');
+  const [result, setResult] = useState('');
+  const [darkMode, setDarkMode] = useState(false);
+
+  const calculateBMI = () => {
+    if (!height || !weight) {
+      setResult("Please enter both height and weight.");
+      return;
+    }
+
+    const heightInMeters = height / 100;
+    const bmi = (weight / (heightInMeters * heightInMeters)).toFixed(2);
+
+    let category = "";
+    let color = "";
+
+    if (bmi < 18.5) {
+      category = "Underweight";
+      color = "#ffc107";
+    } else if (bmi >= 18.5 && bmi < 24.9) {
+      category = "Normal weight";
+      color = "#28a745";
+    } else if (bmi >= 25 && bmi < 29.9) {
+      category = "Overweight";
+      color = "#fd7e14";
+    } else {
+      category = "Obese";
+      color = "#dc3545";
+    }
+
+    setResult(`Your BMI is ${bmi} and you are classified as ` +
+              `<span style="color:${color}">${category}</span>.`);
+  };
+
+  const resetInputs = () => {
+    setHeight('');
+    setWeight('');
+    setResult('');
+  };
+
+  const toggleTheme = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+    <div className={`App ${darkMode ? 'dark' : ''}`}>
+      <div className="container">
+        <h1>BMI Calculator</h1>
+        <p className="info">
+          Body Mass Index (BMI) is a person's weight in kilograms divided by the square of their height in meters.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+        <input type="number" value={height} onChange={e => setHeight(e.target.value)} placeholder="Height (cm)" />
+        <input type="number" value={weight} onChange={e => setWeight(e.target.value)} placeholder="Weight (kg)" />
+
+        <button onClick={calculateBMI}>Calculate BMI</button>
+        <button onClick={toggleTheme}>Toggle Dark Mode</button>
+
+        <div id="result" dangerouslySetInnerHTML={{ __html: result }} />
+
+        <div className="bmi-chart">
+          <h3>BMI Categories:</h3>
+          <ul>
+            <li><span>Underweight</span>: less than 18.5</li>
+            <li><span>Normal weight</span>: 18.5 – 24.9</li>
+            <li><span>Overweight</span>: 25 – 29.9</li>
+            <li><span>Obese</span>: 30 or more</li>
+          </ul>
+        </div>
+      </div>
+
+      <button className="fab" onClick={resetInputs}>🔄</button>
     </div>
   );
 }
