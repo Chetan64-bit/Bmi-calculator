@@ -1,22 +1,32 @@
-body {
+.App {
   font-family: Arial, sans-serif;
-  background: #f0f4f8;
+  background: linear-gradient(135deg, #e0f7fa, #ffffff);
+  min-height: 100vh;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
-  transition: background 0.3s, color 0.3s;
+  padding: 20px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.App.dark {
+  background: linear-gradient(135deg, #0f0f0f, #2c2c2c);
+  color: #eee;
 }
 
 .container {
-  background: white;
-  padding: 20px 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 25px 35px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   text-align: center;
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
+  transition: all 0.4s ease-in-out;
 }
 
 input {
@@ -87,49 +97,19 @@ p.info {
   color: #333;
 }
 
-/* Dark Mode */
-body.dark-mode {
-  background: #121212;
-  color: #eee;
-}
-
-body.dark-mode .container {
-  background: #1e1e1e;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-}
-
-body.dark-mode input,
-body.dark-mode button {
-  background: #2c2c2c;
-  color: white;
-  border-color: #444;
-}
-
-body.dark-mode .bmi-chart {
+.App.dark .bmi-chart {
   background: #252525;
+  color: #eee;
   border-left-color: #28a745;
 }
 
-@media (max-width: 500px) {
-  .container {
-    width: 90%;
-  }
+.App.dark .bmi-chart span {
+  color: #fff;
 }
 
-.container {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 25px 35px;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  text-align: center;
-  width: 100%;
-  max-width: 420px;
-  transition: all 0.4s ease-in-out;
+.App.dark .bmi-chart li {
+  color: #ccc;
 }
-
 
 .typing-text {
   font-family: 'Courier New', monospace;
@@ -144,18 +124,6 @@ body.dark-mode .bmi-chart {
   to {
     width: 16ch;
   }
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #e0f7fa, #ffffff);
-  /* old background: #f0f4f8; */
-  transition: background 0.3s, color 0.3s;
-}
-
-/* Dark mode override */
-body.dark-mode {
-  background: linear-gradient(135deg, #0f0f0f, #2c2c2c);
 }
 
 .fab {
@@ -178,18 +146,8 @@ body.dark-mode {
   transform: rotate(180deg);
 }
 
-.App {
-  font-family: Arial, sans-serif;
-  background: #f0f4f8;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  transition: background 0.3s ease;
-}
-
-.App.dark {
-  background: #121212;
-  color: #eee;
+@media (max-width: 500px) {
+  .container {
+    width: 90%;
+  }
 }

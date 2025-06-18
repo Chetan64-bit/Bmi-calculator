@@ -4,43 +4,46 @@ import './App.css';
 function App() {
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');
-  const [result, setResult] = useState('');
+  const [result, setResult] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
 
   const calculateBMI = () => {
     if (!height || !weight) {
-      setResult("Please enter both height and weight.");
+      setResult({
+        bmi: null,
+        category: 'Please enter both height and weight.',
+        color: '#dc3545'
+      });
       return;
     }
 
     const heightInMeters = height / 100;
     const bmi = (weight / (heightInMeters * heightInMeters)).toFixed(2);
 
-    let category = "";
-    let color = "";
+    let category = '';
+    let color = '';
 
     if (bmi < 18.5) {
-      category = "Underweight";
-      color = "#ffc107";
+      category = 'Underweight';
+      color = '#ffc107';
     } else if (bmi >= 18.5 && bmi < 24.9) {
-      category = "Normal weight";
-      color = "#28a745";
+      category = 'Normal weight';
+      color = '#28a745';
     } else if (bmi >= 25 && bmi < 29.9) {
-      category = "Overweight";
-      color = "#fd7e14";
+      category = 'Overweight';
+      color = '#fd7e14';
     } else {
-      category = "Obese";
-      color = "#dc3545";
+      category = 'Obese';
+      color = '#dc3545';
     }
 
-    setResult(`Your BMI is ${bmi} and you are classified as ` +
-              `<span style="color:${color}">${category}</span>.`);
+    setResult({ bmi, category, color });
   };
 
   const resetInputs = () => {
     setHeight('');
     setWeight('');
-    setResult('');
+    setResult(null);
   };
 
   const toggleTheme = () => {
@@ -55,14 +58,37 @@ function App() {
           Body Mass Index (BMI) is a person's weight in kilograms divided by the square of their height in meters.
         </p>
 
-        <input type="number" value={height} onChange={e => setHeight(e.target.value)} placeholder="Height (cm)" />
-        <input type="number" value={weight} onChange={e => setWeight(e.target.value)} placeholder="Weight (kg)" />
+        <input
+          type="number"
+          value={height}
+          onChange={(e) => setHeight(e.target.value)}
+          placeholder="Height (cm)"
+        />
+        <input
+          type="number"
+          value={weight}
+          onChange={(e) => setWeight(e.target.value)}
+          placeholder="Weight (kg)"
+        />
 
         <button onClick={calculateBMI}>Calculate BMI</button>
         <button onClick={toggleTheme}>Toggle Dark Mode</button>
 
-        <div id="result" dangerouslySetInnerHTML={{ __html: result }} />
+        {/* RESULT */}
+        {result && (
+          <div id="result" className="show">
+            {result.bmi ? (
+              <>
+                Your BMI is <strong>{result.bmi}</strong> and you are classified as{' '}
+                <strong style={{ color: result.color }}>{result.category}</strong>.
+              </>
+            ) : (
+              <span style={{ color: result.color }}>{result.category}</span>
+            )}
+          </div>
+        )}
 
+        {/* BMI Chart */}
         <div className="bmi-chart">
           <h3>BMI Categories:</h3>
           <ul>
