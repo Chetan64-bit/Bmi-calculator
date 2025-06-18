@@ -33,3 +33,5 @@ This app helps users determine their BMI and classifies them into categories lik
 - Git + GitHub
 
 ---
+🙌 Author
+Made with 💙 by Chetan Shinde
