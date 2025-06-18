@@ -1,28 +1,35 @@
 # 🧮 BMI Calculator - React App
 
-A clean and responsive Body Mass Index (BMI) Calculator built using **React.js**. This app allows users to calculate their BMI based on height and weight, and categorizes the result as Underweight, Normal, Overweight, or Obese.
+A clean, mobile-responsive **BMI (Body Mass Index)** Calculator built with **React.js**.  
+This app helps users determine their BMI and classifies them into categories like underweight, normal, overweight, or obese.
+
+> 💡 Built by [Chetan Shinde](https://github.com/Chetan64-bit) and deployed on [Vercel]
+
+---
+
+## 🔗 Live Demo
+
+🌐 [Click here to view the live app](https://bmi-calculator-sage-tau.vercel.app/)
+
 ---
 ---
 
 ## 🚀 Features
 
-- ✅ Responsive and mobile-friendly
-- 🌓 Light / Dark mode toggle
-- 💡 Smooth UI with gradient backgrounds and glassmorphism
-- ⚙️ Real-time BMI calculation
-- 🔁 Reset input with a floating action button (FAB)
-- 🎯 Clean result output with dynamic color indicators
+- ✅ Real-time BMI calculation
+- 🌗 Toggle between Light & Dark mode
+- 🎨 Glassmorphism + gradient UI design
+- 📱 Fully mobile responsive
+- 🎯 Visual color indicators for BMI category
+- 🔁 Reset button for input fields
 
 ---
 
-## 🛠️ Technologies Used
+## ⚙️ Tech Stack
 
 - React.js (with Hooks)
-- CSS3 (Glassmorphism + Dark Mode)
-- HTML5
-- Git & GitHub
+- CSS3
+- Vercel (for deployment)
+- Git + GitHub
 
 ---
-
-
-
