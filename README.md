@@ -34,4 +34,4 @@ This app helps users determine their BMI and classifies them into categories lik
 
 ---
 🙌 Author
-Made with 💙 by Chetan Shinde
+Chetan Shinde
